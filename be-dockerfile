@@ -29,6 +29,7 @@ ENV QUX_HTTP_HOST=quant.example.com \
 # ## Clone Quant-ux backend repo with pre-built java backend
 RUN git clone https://github.com/KlausSchaefers/qux-java.git
 
+
 ## Run the java backend with this
 # CMD [ "sleep", "inf" ]
 # CMD [ "java", "-jar",  "qux-java/release/qux-server.jar", "-Xmx2g", "-conf", "qux-java/matc.conf", "-instances 1" ]
