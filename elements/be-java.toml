@@ -1,0 +1,42 @@
+type = "container"
+
+dockerfile = "be-dockerfile"
+
+apply-variables-on-files = ["/usr/src/quant-be/qux-java/matc.conf"]
+
+run-writable-file-system = true
+
+run-cmd = [
+    "java",
+    "-jar",
+    "qux-java/release/qux-server.jar",
+    "-Xmx2g",
+    "-conf",
+    "qux-java/matc.conf",
+    "-instances 1",
+]
+
+
+[variables]
+# Rekuber variables
+NODEJS_HOST = "http://fe-nodejs:8082"
+#Quant-ux vaiables
+QUX_MONGO_TABLE_PREFIX = "quantux"
+QUX_MONGO_CONNECTION_STRING = "mongodb://mongodb:27017"
+TZ = "Europe/Warsaw"
+
+[expose.8080]
+type = "http-internal"
+probe.path = "/rest/status.json"
+
+[storage."/qux-images"]
+type = "block"
+max-size-mb = 1000
+
+[storage."/qux-image-apps"]
+type = "block"
+max-size-mb = 1000
+
+[storage."/tmp"]
+type = "block"
+max-size-mb = 1000

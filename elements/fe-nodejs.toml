@@ -1,0 +1,11 @@
+type = "container"
+
+dockerfile = "fe-dockerfile"
+
+run-cmd = ["node", "server/start.js"]
+
+[variables]
+QUX_PROXY_URL = "http://be-java:8080"
+
+[expose.8082]
+type = "http-domain"
